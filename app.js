@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const url = require("url");
 const path = require("path");
 
@@ -12,7 +12,14 @@ function createWindow() {
       nodeIntegration: true,
     },
     titleBarStyle: 'hidden',
-    titleBarOverlay: true
+    titleBarOverlay: true,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  });
+
+  ipcMain.on('test', (event, msg) => {
+    console.log("Testing from app.js! Message: " + msg);
   });
 
   mainWindow.loadURL(
@@ -22,6 +29,7 @@ function createWindow() {
       slashes: true,
     })
   );
+  
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 

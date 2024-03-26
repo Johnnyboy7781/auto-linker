@@ -10,8 +10,12 @@ import { ElectronService } from 'ngx-electronyzer';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'auto-linker';
 
   constructor(private electronService: ElectronService) {}
+
+  test() {
+    console.log("from app comp ts!");
+    window.linkerApi.test('my message')
+  }
 
 }
