@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ElectronService } from 'ngx-electronyzer';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'auto-linker';
+
+  constructor(private electronService: ElectronService) {}
+
 }
