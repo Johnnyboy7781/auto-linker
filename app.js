@@ -6,11 +6,13 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 900,
+    width: 1000,
+    height: 750,
     webPreferences: {
       nodeIntegration: true,
     },
+    titleBarStyle: 'hidden',
+    titleBarOverlay: true
   });
 
   mainWindow.loadURL(
