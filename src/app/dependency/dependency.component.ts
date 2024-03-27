@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CdkDrag} from '@angular/cdk/drag-drop';
 
@@ -7,8 +7,9 @@ import {CdkDrag} from '@angular/cdk/drag-drop';
   standalone: true,
   imports: [CommonModule, CdkDrag],
   templateUrl: './dependency.component.html',
-  styleUrls: ['./dependency.component.scss']
+  styleUrls: ['./dependency.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DependencyComponent {
-
+  testVal?: string;
 }
