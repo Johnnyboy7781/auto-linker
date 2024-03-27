@@ -1,6 +1,6 @@
 .dependency-container {
-    width: 150px;
-    height: 75px;
+    min-width: 10rem;
+    padding: 1.25rem;
     border: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
     cursor: move;
