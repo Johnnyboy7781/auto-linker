@@ -106,7 +106,11 @@
           }
         },
         "desktop": {
-          "builder": "ngx-electronify:electron"
+          "builder": "ngx-electronify:electron",
+          "options": {
+            "height": 1000,
+            "width": 750
+          }
         }
       }
     }
