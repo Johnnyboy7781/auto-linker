@@ -1,5 +1,6 @@
 export interface LinkerApi {
-    test: (msg: string) => void
+    startLinker: () => void,
+    stopLinker: () => void
 }
 
 declare global {

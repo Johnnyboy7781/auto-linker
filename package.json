@@ -2,6 +2,7 @@
   "name": "auto-linker",
   "version": "0.0.0",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng build --base-href ./ && electron .",

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ElectronService } from 'ngx-electronyzer';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +10,12 @@ import { ElectronService } from 'ngx-electronyzer';
 })
 export class AppComponent {
 
-  constructor(private electronService: ElectronService) {}
+  startLinker() {
+    window.linkerApi.startLinker();
+  }
 
-  test() {
-    console.log("from app comp ts!");
-    window.linkerApi.test('my message')
+  stopLinker() {
+    window.linkerApi.stopLinker();
   }
 
 }

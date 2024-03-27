@@ -1,6 +1,12 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
-const url = require("url");
-const path = require("path");
+import { app, BrowserWindow, ipcMain } from "electron";
+import { format, fileURLToPath } from "url";
+import { join, dirname } from "path";
+
+import { startLinker, cleanExit } from "./lib/autoLinker.js";
+
+// Change cwd to this lib dir
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename);
 
 let mainWindow;
 
@@ -14,17 +20,23 @@ function createWindow() {
     titleBarStyle: 'hidden',
     titleBarOverlay: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: join(__dirname, 'preload.js')
     }
   });
 
-  ipcMain.on('test', (event, msg) => {
-    console.log("Testing from app.js! Message: " + msg);
+  ipcMain.on('start-linker', () => {
+    console.log("\nStarting Linker . . .\n");
+    startLinker();
+  });
+
+  ipcMain.on('stop-linker', () => {
+    cleanExit();
+    console.log("\nLinker Stopped\n");
   });
 
   mainWindow.loadURL(
-    url.format({
-      pathname: path.join(__dirname, `/dist/auto-linker/index.html`),
+    format({
+      pathname: join(__dirname, `/dist/auto-linker/index.html`),
       protocol: "file:",
       slashes: true,
     })
@@ -33,17 +45,21 @@ function createWindow() {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
-  mainWindow.on("closed", function () {
+  mainWindow.on("closed", () => {
     mainWindow = null;
   });
 }
 
 app.on("ready", createWindow);
 
-app.on("window-all-closed", function () {
+app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
 
-app.on("activate", function () {
+app.on("activate", () => {
   if (mainWindow === null) createWindow();
 });
+
+app.on('quit', () => {
+  cleanExit();
+})
