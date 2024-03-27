@@ -2,12 +2,12 @@ import { app, BrowserWindow, ipcMain } from "electron";
 import { format, fileURLToPath } from "url";
 import { join, dirname } from "path";
 
-import { startLinker, cleanExit } from "./lib/autoLinker.js";
+import { spawn } from "child_process";
 
-// Change cwd to this lib dir
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename);
 
+let linkerProcess;
 let mainWindow;
 
 function createWindow() {
@@ -15,23 +15,26 @@ function createWindow() {
     width: 1000,
     height: 750,
     webPreferences: {
-      nodeIntegration: true,
-    },
-    titleBarStyle: 'hidden',
-    titleBarOverlay: true,
-    webPreferences: {
       preload: join(__dirname, 'preload.js')
     }
   });
 
   ipcMain.on('start-linker', () => {
-    console.log("\nStarting Linker . . .\n");
-    startLinker();
+    if (!linkerProcess) {
+      console.log("Starting Linker . . .");
+      linkerProcess = spawn("node", ["./lib/autoLinker.js"]);
+      linkerProcess.stdout.on('data', (data) => {
+        if (data) console.log(data.toString())
+      })
+    }
   });
 
   ipcMain.on('stop-linker', () => {
-    cleanExit();
-    console.log("\nLinker Stopped\n");
+    if (linkerProcess) {
+      linkerProcess.kill();
+      linkerProcess = undefined;
+      console.log("Linker Stopped");
+    }
   });
 
   mainWindow.loadURL(
@@ -60,6 +63,8 @@ app.on("activate", () => {
   if (mainWindow === null) createWindow();
 });
 
-app.on('quit', () => {
-  cleanExit();
+app.on('before-quit', () => {
+  if (linkerProcess) {
+    linkerProcess.kill();
+  }
 })
