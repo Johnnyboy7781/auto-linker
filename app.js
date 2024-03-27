@@ -19,10 +19,10 @@ function createWindow() {
     }
   });
 
-  ipcMain.on('start-linker', () => {
+  ipcMain.on('start-linker', (event, config) => {
     if (!linkerProcess) {
       console.log("Starting Linker . . .");
-      linkerProcess = spawn("node", ["./lib/autoLinker.js"]);
+      linkerProcess = spawn("node", ["./lib/autoLinker.js", JSON.stringify(config)]);
       linkerProcess.stdout.on('data', (data) => {
         if (data) console.log(data.toString())
       })

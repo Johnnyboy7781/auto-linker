@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron/renderer');
 
 contextBridge.exposeInMainWorld('linkerApi', {
-    startLinker: () => ipcRenderer.send('start-linker'),
+    startLinker: (config) => ipcRenderer.send('start-linker', config),
     stopLinker: () => ipcRenderer.send('stop-linker')
 })

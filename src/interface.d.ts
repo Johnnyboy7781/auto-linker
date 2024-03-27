@@ -1,5 +1,5 @@
 export interface LinkerApi {
-    startLinker: () => void,
+    startLinker: (config: object) => void,
     stopLinker: () => void
 }
 
