@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "auto-linker:build:production"
+              "buildTarget": "auto-linker:build:production"
             },
             "development": {
-              "browserTarget": "auto-linker:build:development"
+              "buildTarget": "auto-linker:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "auto-linker:build"
+            "buildTarget": "auto-linker:build"
           }
         },
         "test": {
