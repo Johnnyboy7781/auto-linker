@@ -19,16 +19,29 @@ export class DependencyDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DependencyDialogComponent>,
-    private viewContainerRef: ViewContainerRef,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: DependencyData,
   ) {}
 
-  close(result: boolean) {
-    this.dialogRef.close(result);
+  close() {
+    this.dialogRef.close(this.data);
   }
 }
 
-interface DialogData {
+export interface DependencyData {
   packageName: string,
   absolutePath: string
 }
+
+export const dependencyDataGuard = (obj: unknown): obj is DependencyData => {
+  if (typeof obj === 'object' && obj) {
+    if (!('packageName' in obj) || !('absolutePath' in obj)) {
+      return false;
+    }
+
+    const dependencyData = obj as DependencyData;
+    if (dependencyData.packageName && dependencyData.absolutePath) {
+      return true;
+    }
+  }
+  return false;
+};

@@ -1,11 +1,15 @@
 <h1 mat-dialog-title>New dependency</h1>
 <mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
+  <mat-form-field style="margin-top: 10px;" appearance="outline">
+    <mat-label>Package Name</mat-label>
     <input matInput [(ngModel)]="data.packageName">
   </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Absolute Path</mat-label>
+    <input matInput [(ngModel)]="data.absolutePath">
+  </mat-form-field>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="close(false)">CANCEL</button>
-  <button mat-button (click)="close(true)">GENERATE</button>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">CANCEL</button>
+  <button mat-button (click)="close()">GENERATE</button>
 </mat-dialog-actions>

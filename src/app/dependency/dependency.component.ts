@@ -11,5 +11,6 @@ import {CdkDrag} from '@angular/cdk/drag-drop';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DependencyComponent {
-  testVal?: string;
+  packageName!: string;
+  absolutePath!: string;
 }
