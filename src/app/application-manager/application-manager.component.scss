@@ -1,0 +1,67 @@
+$header-height: 4rem;
+
+.manager-container {
+    padding: 1rem;
+    height: 100%;
+}
+
+// Header styles
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    height: $header-height;
+
+    & .header-left, .header-right {
+        flex: 1;
+    }
+
+    & .header-mid {
+        & .app-to-link-to {
+            width: fit-content;
+            min-width: 10rem;
+            max-width: 15rem;
+            padding: 1rem;
+            border: solid 1px #ccc;
+            color: rgba(0, 0, 0, 0.87);
+            text-align: left;
+            background: #fff;
+            border-radius: 4px;
+            margin: 0 auto;
+
+            & .app-name {
+                font-size: 1.75em;
+                margin-bottom: 0.5rem;
+            }
+
+            & .app-path {
+                color: rgba(128, 128, 128, 0.8);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    & .header-right {
+
+        & button {
+            border-radius: 15px;
+            box-shadow: none;
+            background-color: rgb(29, 179, 29);
+
+            &:disabled {
+                background-color: rgb(220, 220, 220);
+            }
+        }
+    }
+}
+
+// Dashboard styles
+.dashboard-container {
+    background-color: rgb(237, 237, 237);
+    display: flex;
+    width: 100%;
+    height: calc(100% - $header-height);
+    border-radius: 4px;
+}

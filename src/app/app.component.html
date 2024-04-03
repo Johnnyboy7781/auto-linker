@@ -1,5 +1,8 @@
-<button (click)="startLinker()">Start linker</button>
-
-<button (click)="stopLinker()">Stop linker</button>
-
-<button (click)="openDialog()">Generate Component</button>
+<mat-sidenav-container>
+    <mat-sidenav #sidebar mode="side" opened="{{true}}">
+        <resource-manager></resource-manager>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <application-manager></application-manager>
+    </mat-sidenav-content>
+</mat-sidenav-container>
