@@ -1,4 +1,4 @@
-$header-height: 4rem;
+$header-height: 3rem;
 
 .manager-container {
     padding: 1rem;
@@ -25,7 +25,7 @@ $header-height: 4rem;
             border: solid 1px #ccc;
             color: rgba(0, 0, 0, 0.87);
             text-align: left;
-            background: #fff;
+            background: rgb(177, 177, 177);
             border-radius: 4px;
             margin: 0 auto;
 
@@ -35,7 +35,6 @@ $header-height: 4rem;
             }
 
             & .app-path {
-                color: rgba(128, 128, 128, 0.8);
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
@@ -46,20 +45,17 @@ $header-height: 4rem;
     & .header-right {
 
         & button {
-            border-radius: 15px;
+            border-radius: 10px;
             box-shadow: none;
-            background-color: rgb(29, 179, 29);
-
-            &:disabled {
-                background-color: rgb(220, 220, 220);
-            }
+            width: 2.5rem;
+            height: 2.5rem;
         }
     }
 }
 
 // Dashboard styles
 .dashboard-container {
-    background-color: rgb(237, 237, 237);
+    background-color: rgb(80, 80, 80);
     display: flex;
     width: 100%;
     height: calc(100% - $header-height);
